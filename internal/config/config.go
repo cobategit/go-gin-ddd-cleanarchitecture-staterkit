@@ -3,6 +3,8 @@ package config
 import (
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 type PgConfig struct {
@@ -28,6 +30,10 @@ type Config struct {
 }
 
 func getEnv(key, def string) string {
+	if err := godotenv.Load(".env"); err != nil {
+		log.Println("No .env file found")
+	}
+
 	if val := os.Getenv(key); val != "" {
 		return val
 	}
@@ -40,7 +46,7 @@ func Load() *Config {
 		DBDriver: getEnv("DB_DRIVER", "postgres"),
 
 		Pgsql: PgConfig{
-			DSN: getEnv("POSTGRES_DSN", "host=postgres port=5432 user=postgres password=postgres dbname=app_db sslmode=disable"),
+			DSN: getEnv("POSTGRES_DSN", "host=postgres port=5432 user=postgres password= dbname=practice sslmode=disable"),
 		},
 		Mysql: MysqlConfig{
 			DSN: getEnv("MYSQL_DSN", "root:password@tcp(mysql:3306)/app_db?parseTime=true"),

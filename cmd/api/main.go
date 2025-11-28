@@ -1,4 +1,4 @@
-package api
+package main
 
 import (
 	"log"
@@ -15,10 +15,10 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// @title           Your App API
+// @title           Practice Go v1
 // @version         1.0
 // @description     Boilerplate Gin + DDD + JWT + Postgres/MySQL
-// @host            localhost:8080
+// @host            localhost:5006
 // @BasePath        /
 // @schemes         http
 // @securityDefinitions.apikey BearerAuth
